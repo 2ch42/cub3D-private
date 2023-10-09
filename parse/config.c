@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:05:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/08 22:28:00 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/09 20:41:16 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	init_checker(t_checker *checker)
 
 int	check_checker(t_checker *checker)
 {
-	if (checker->north && checker->south && checker->west && checker->east && checker->ceiling && checker->floor)
+	if (checker->north && checker->south && checker->west && checker->east
+		&& checker->ceiling && checker->floor)
 		return (1);
 	return (0);
 }
