@@ -6,19 +6,12 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:25 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/09 21:19:21 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:56:08 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
-
-typedef struct s_img
-{
-	void	*img;
-	int		img_width;
-	int		img_height;
-}	t_img;
 
 typedef struct s_rgb
 {
@@ -29,14 +22,15 @@ typedef struct s_rgb
 
 typedef struct s_data
 {
-	int	fd;
-	char	**map;
-	t_img	*north;
-	t_img	*south;
-	t_img	*west;
-	t_img	*east;
-	t_rgb	ceiling;
-	t_rgb	floor;
+	int			fd;
+	char		**map;
+	t_checker	*checker;
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
+	t_rgb		*floor;
+	t_rgb		*ceiling;
 }	t_data;
 
 typedef struct s_checker

@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:04:22 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/09 21:35:30 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:09:38 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ int	check_arg(int argc, char *argv[])
 		return (0);
 	}
 	if (!(check_ext(argv[1])))
-	{
 		print_error("File Extension Error\n");
-	}
 	return (1);
 }

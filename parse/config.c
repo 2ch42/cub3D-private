@@ -6,38 +6,90 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:05:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/09 20:41:16 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/10 21:59:09 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include <fcntl.h>
+#include "get_next_line.h"
 #include "parse.h"
 
-void	init_checker(t_checker *checker)
+staticd void	init_checker(t_checker *checker)
 {
 	checker->north = 0;
 	checker->south = 0;
 	checker->west = 0;
 	checker->east = 0;
-	checker->ceiling = 0;
 	checker->floor = 0;
+	checker->ceiling = 0;
 }
 
-int	check_checker(t_checker *checker)
+static int	check_checker(t_checker *checker)
 {
-	if (checker->north && checker->south && checker->west && checker->east
-		&& checker->ceiling && checker->floor)
+	if (checker->north == 1 && checker->south == 1 && checker->west == 1
+			&& checker->east == 1 && checker->ceiling == 1 && checker->floor == 1)
 		return (1);
 	return (0);
 }
 
-int	check_config(const char *path)
+static void	get_s_config(t_data *data, char *line)
 {
-	t_checker	*checker;
+	int	idx;
+	int	id;
 
-	init_checker(checker);
+	id = check_id(line, &idx);
+	if (id == 1)
+		data->checker->north += 1;
+	if (id == 2)
+		data->checker->south += 1;
+	if (id == 3)
+		data->checker->west += 1;
+	if (id == 4)
+		data->checker->east += 1;
+	if (id == 5)
+		data->checker->floor += 1;
+	if (id == 6)
+		data->checker->ceiling += 1;
+	if (id >= 1 && id <= 4)
+		get_text(data, line, &idx, id);
+	if (id == 5 || id == 6)
+		get_rgb(data, line, &idx, id);
+}
+
+static void	get_config(t_data *data)
+{
+	char		*line;
+
+	init_checker(data->checker);
+	init_rgb(data);
+	line = get_next_line(data->fd);
+	while (line)
+	{
+		if (check_if_map(line))
+			break;
+		//
+		get_s_config(data, line);
+		line = get_next_line(data->fd);
+	}
+	if (!line)
+		config_err(); // additional free needed
+	if (!(check_checker(data->checker)))
+	{
+		free(line); // additional free needed
+		config_err();
+	}
 }
 
 t_data	*get_data(const char *path)
 {
-		
+	t_data	*data;
+
+	data->fd = open(path);
+	if (data->fd < 0)
+	{
+		print_error("File Open Error\n");
+		exit(1);
+	}
+	get_config(data);
 }
