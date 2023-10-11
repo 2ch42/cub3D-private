@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:25 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/10 21:56:08 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/11 17:00:52 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ typedef struct s_checker
 
 void	print_error(const char *s);
 int		check_arg(int argc, char *argv[]);
+int		ft_atoi(const char *str);
 
 #endif

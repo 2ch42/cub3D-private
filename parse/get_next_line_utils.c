@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 10:15:19 by changhyl          #+#    #+#             */
-/*   Updated: 2023/03/30 19:39:34 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/11 19:48:57 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const	char *s)
+size_t	ch_strlen(const	char *s)
 {
 	size_t	len;
 
@@ -32,7 +32,7 @@ char	*ft_clear_str(char **str)
 	return (NULL);
 }
 
-char	*ft_strdup(char *s1, size_t len, size_t *tot_len)
+char	*g_strdup(char *s1, size_t len, size_t *tot_len)
 {
 	size_t	i;
 	char	*str;
@@ -79,7 +79,7 @@ char	*ft_strjoin(char *s1, char *s2, size_t *len1, size_t len2)
 	return (ret_str);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len, size_t tot_len)
+char	*g_substr(char *s, unsigned int start, size_t len, size_t tot_len)
 {
 	char		*ret_str;
 	size_t		i;

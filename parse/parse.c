@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:05 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/10 21:54:14 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/11 21:10:58 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ t_data	run_parse(int argc, char *argv[])
 
 	if (!(check_arg(argc, argv)))
 		exit(1);
-	data = get_data(argv[1]); // should check config in get_data and call exit
+	data = get_data(argv[1]);
+	if(!data)
+		print_err_exit("Parse Error\n");
 }

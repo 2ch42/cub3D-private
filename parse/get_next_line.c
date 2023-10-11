@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 10:14:56 by changhyl          #+#    #+#             */
-/*   Updated: 2023/03/30 19:40:14 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/11 19:49:01 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*get_ret_str(char **str, int idx, size_t len)
 		return (NULL);
 	if (idx == -1)
 		return (*str);
-	ret_str = ft_substr(*str, 0, idx + 1, len);
+	ret_str = g_substr(*str, 0, idx + 1, len);
 	if (!ret_str)
 		return (ft_clear_str(str));
 	return (ret_str);
@@ -54,7 +54,7 @@ static char	*get_new_buf(char **str, int idx, size_t len)
 		return (ft_clear_str(str));
 	if (idx == -1)
 		return (NULL);
-	ret_str = ft_substr(*str, idx + 1, len - idx - 1, len);
+	ret_str = g_substr(*str, idx + 1, len - idx - 1, len);
 	free(*str);
 	*str = NULL;
 	return (ret_str);
@@ -82,7 +82,7 @@ char	*get_next_line(int fd)
 		return (ft_clear_str(&read_buf));
 	len = 0;
 	if (read_buf != NULL)
-		len += ft_strlen(read_buf);
+		len += ch_strlen(read_buf);
 	while (1)
 	{
 		read_result = read(fd, buf, BUFFER_SIZE);
@@ -90,7 +90,7 @@ char	*get_next_line(int fd)
 		if (read_result <= 0)
 			break ;
 		if (!read_buf)
-			read_buf = ft_strdup(buf, read_result, &len);
+			read_buf = g_strdup(buf, read_result, &len);
 		else
 			read_buf = ft_strjoin(read_buf, buf, &len, read_result);
 		if (check_nl(buf) != -1)
