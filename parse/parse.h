@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:25 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/11 17:00:52 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/13 20:31:38 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_data
 	char		*east;
 	t_rgb		*floor;
 	t_rgb		*ceiling;
+	int			map_w;
+	int			map_h;
 }	t_data;
 
 typedef struct s_checker
@@ -42,6 +44,12 @@ typedef struct s_checker
 	int	ceiling;
 	int	floor;
 }	t_checker;
+
+typedef struct s_mapline
+{
+	char			*line;
+	struct s_list	*next;
+}	t_mapline;
 
 void	print_error(const char *s);
 int		check_arg(int argc, char *argv[]);

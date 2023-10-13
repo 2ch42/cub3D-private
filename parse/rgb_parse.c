@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:19:54 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/11 20:17:07 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:35:46 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ static char	*cub_substr(char const *s, unsigned int start, size_t len)
 
 void	get_f_rgb(t_data *data, char *line, int *idx)
 {
+	if (!data || !line)
+		return ;
 	data->floor->red = ft_atoi(line);
 	while (*(line + *idx) != ',')
 		*idx += 1;
@@ -54,6 +56,8 @@ void	get_f_rgb(t_data *data, char *line, int *idx)
 
 void	get_c_rgb(t_data *data, char *line, int *idx)
 {
+	if (!data || !line)
+		return ;
 	data->ceiling->red = ft_atoi(line);
 	while (*(line + *idx) != ',')
 		*idx += 1;

@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:05:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/11 21:25:29 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:24:53 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 static void	init_checker(t_checker *checker)
 {
+	if (!checker)
+		return (NULL);
 	checker->north = 0;
 	checker->south = 0;
 	checker->west = 0;
@@ -27,6 +29,8 @@ static void	init_checker(t_checker *checker)
 
 static int	check_checker(t_checker *checker)
 {
+	if (!checker)
+		return (0);
 	if (checker->north == 1 && checker->south == 1 && checker->west == 1
 		&& checker->east == 1 && checker->ceiling == 1 && checker->floor == 1)
 		return (1);
@@ -38,6 +42,8 @@ static void	get_s_config(t_data *data, char *line)
 	int	idx;
 	int	id;
 
+	if (!data || !line)
+		return (NULL);
 	id = check_id(line, &idx);
 	if (id == 1)
 		data->checker->north += 1;
@@ -61,6 +67,8 @@ static char	*get_config(t_data *data)
 {
 	char		*line;
 
+	if (!data)
+		return (NULL);
 	init_checker(data->checker);
 	line = get_next_line(data->fd);
 	while (line)

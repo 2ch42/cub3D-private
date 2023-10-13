@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   map_parse_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/08 19:23:05 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/13 17:00:52 by changhyl         ###   ########.fr       */
+/*   Created: 2023/10/13 18:48:10 by changhyl          #+#    #+#             */
+/*   Updated: 2023/10/13 20:42:08 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "parse.h"
 
-t_data	run_parse(int argc, char *argv[])
+void	map_err_exit(int errnum)
 {
-	t_data	*data;
+	if (errnum == 1)
+		print_err_exit("No Map Found\n");
+	if (errnum == 2)
+		print_err_exit("Map Doesn't Fit\n");
+}
 
-	if (!(check_arg(argc, argv)))
-		exit(1);
-	data = get_data(argv[1]);
-	if(!data)
-		print_err_exit("Parse Error\n");
-	return (data);
+void	free_mapline(t_mapline **mapline)
+{
+	t_mapline	*p;
+	t_mapline	*q;
+
+	if (!mapline)
+		return ;
+	p = *mapline;
+	if (!p)
+		return ;
+	while (p != NULL)
+	{
+		q = p->next;
+		free(p);
+		p = q;
+	}
+	free(mapline);
+	mapline = NULL;
 }

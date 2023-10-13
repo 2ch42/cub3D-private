@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:12:58 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/11 20:10:39 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:32:48 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	*ch_substr(char const *s, unsigned int start, size_t len)
 
 void	get_text(t_data *data, char *line, int *idx, int id)
 {
+	if (!data || !line)
+		print_err_exit("Unexpected Error\n");
 	char	*loc;
 	int		start;
 
@@ -67,6 +69,8 @@ static void	check_rgb_err(char *line, int *idx)
 	int	i;
 	int	comma;
 
+	if (!line)
+		print_err_exit("Unexpected Error\n");
 	i = *idx;
 	while (*(line + i))
 	{
@@ -89,6 +93,8 @@ static void	check_rgb_err(char *line, int *idx)
 
 void	get_rgb(t_data *data, char *line, int *idx, int id)
 {
+	if (!data || !line)
+		return ;
 	*idx += 1;
 	while (*(line + *idx) && check_whitespace(*(line = *idx)))
 		*idx += 1;

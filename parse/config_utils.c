@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:24:15 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/11 18:57:38 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/13 17:02:30 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,10 @@ void	config_err(void)
 	exit(1);
 }
 
-int	check_whitespace(char c)
-{
-	if (c == ' ' || c == '\t')
-		return (1);
-	else if (c == '\v' || c == '\f' || c == '\r')
-		return (1);
-	return (0);
-}
-
-int	check_if_map(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (*(s + i))
-	{
-		if (*(s + i) == '0' || *(s + i) == '1')
-			return (1);
-		if (*(s + i) == 'N' && *(s + i + 1) != 'O')
-			return (1);
-		if (*(s + i) == 'S' && *(s + i + 1) != 'O')
-			return (1);
-		if (*(s + i) == 'W' && *(s + i + 1) != 'W')
-			return (1);
-		if (*(s + i) == 'E' && *(s + i + 1) != 'A')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	check_id(const char *s, int *idx)
 {
+	if (!s)
+		return (0);
 	*idx = 0;
 	while (*(s + *idx) && check_whitespace(*(s + *idx)))
 		*idx += 1;

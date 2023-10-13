@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:04:22 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/11 17:21:24 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/13 16:30:01 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 static int	check_ext(const char *path)
 {
+	if (!path)
+		print_err_exit("No path found\n");
 	int	str_len;
 
 	str_len = ch_strlen(path);
