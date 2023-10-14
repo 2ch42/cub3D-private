@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
+/*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/08 19:23:05 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/14 17:19:02 by changhyl         ###   ########.fr       */
+/*   Created: 2023/10/14 16:37:55 by changhyl          #+#    #+#             */
+/*   Updated: 2023/10/14 20:43:52 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "parse.h"
-
-t_data	*run_parse(int argc, char *argv[])
+/*
+int	check_surr_char(t_data *data)
 {
-	t_data	*data;
-
-	if (!(check_arg(argc, argv)))
-		exit(1);
-	data = get_data(argv[1]);
-	if (!data)
-		print_err_exit("Parse Error\n");
-	return (data);
+	int		count;
+	int		i;
+	int		j;
+	
+	count = 0;
+	i = 0;
+	while (data->map[i])
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j]
+			j++;
+		}
+		i++;
+	}
 }
+*/

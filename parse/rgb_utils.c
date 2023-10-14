@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:36:03 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/13 16:36:48 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:39:57 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ int	is_rgb_input(int c)
 }
 
 void	add_rgb_err(char *line, int *idx)
-{
-	if (!line)
-		return ;
+{	
 	int	i;
 	int	count;
 
+	if (!line)
+		print_err_exit("No Line Found\n");
 	i = *idx;
 	count = 0;
 	while (*(line + i))
@@ -46,14 +46,15 @@ void	add_rgb_err(char *line, int *idx)
 		if (ft_isdigit(*(line + i)))
 		{
 			count++;
+			while (*(line + i) && ft_isdigit(*(line + i)))
+				i++;
 			while (*(line + i) && check_whitespace(*(line + i)))
 				i++;
-			if (ft_isdigit(*(line + i)))
-				break;
-			i--;
+			if (*(line + i) != ',')
+				break ;
 		}
 		i++;
 	}
 	if (count != 3)
-		print_err_exit("Rgb Inptu Error\n");
+		print_err_exit("Rgb Input Error\n");
 }

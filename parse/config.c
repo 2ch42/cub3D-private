@@ -6,19 +6,20 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:05:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/13 16:24:53 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/14 21:42:08 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <fcntl.h>
+#include <stdio.h> //
 #include "get_next_line.h"
 #include "parse.h"
 
 static void	init_checker(t_checker *checker)
 {
 	if (!checker)
-		return (NULL);
+		print_err_exit("Unknown Error\n");
 	checker->north = 0;
 	checker->south = 0;
 	checker->west = 0;
@@ -43,7 +44,7 @@ static void	get_s_config(t_data *data, char *line)
 	int	id;
 
 	if (!data || !line)
-		return (NULL);
+		print_err_exit("Unknown Error\n");
 	id = check_id(line, &idx);
 	if (id == 1)
 		data->checker->north += 1;
@@ -73,19 +74,18 @@ static char	*get_config(t_data *data)
 	line = get_next_line(data->fd);
 	while (line)
 	{
-		if (check_if_map(line))
-			break;
 		get_s_config(data, line);
-		free_line(line);
+		if (check_checker(data->checker))
+			break ;
 		line = get_next_line(data->fd);
 	}
 	if (!line)
-		config_err();
+		print_err_exit("Config Error\n");
 	if (!(check_checker(data->checker)))
 	{
-		free_line(line);
-		config_err();
+		print_err_exit("Config Error\n");
 	}
+	return (line);
 }
 
 t_data	*get_data(const char *path)
@@ -93,13 +93,14 @@ t_data	*get_data(const char *path)
 	t_data	*data;
 	char	*line;
 
-	data->fd = open(path);
+	data->fd = open(path, O_RDONLY);
 	if (data->fd < 0)
-	{
-		print_error("File Open Error\n");
-		exit(1);
-	}
+		print_err_exit("File Open Error\n");
+	data->checker = (t_checker *)malloc(sizeof(t_checker));
+	if (!(data->checker))
+		print_err_exit("Unknown Error\n");
 	line = get_config(data);
-	get_map(data, line);
+	//get_map(data, line);
+	close(data->fd);
 	return (data);
 }

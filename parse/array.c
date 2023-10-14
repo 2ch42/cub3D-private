@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   array.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 22:48:05 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/13 22:59:00 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:40:35 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "parse.h"
+/*
+static void	check_map_err(t_data *data)
+{
+	if (!(check_surr_char(data)))
+		map_err_exit(3);
+	if (!(check_col(data)))
+		map_err_exit(3);
+}
 
 void	fill_arr(char *s1, char *s2, int width)
 {
@@ -43,10 +52,11 @@ void	make_arr(t_data *data, t_mapline **mapline)
 	{
 		if (!p)
 			print_err_exit("Map Error\n");
-		fill_arr(mapline->line, data->map[i], data->map_w);
+		fill_arr(p->line, data->map[i], data->map_w);
 		p = p->next;
 		i++;
 	}
 	free_mapline(mapline);
-	check_map_err(t_data *data);
+	check_map_err(data);
 }
+*/

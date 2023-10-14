@@ -6,14 +6,15 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:12:58 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/13 16:32:48 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/14 21:47:09 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdio.h> //
 #include "parse.h"
 
-char	*ch_substr(char const *s, unsigned int start, size_t len)
+char	*ch_substr(char const *s, int start, size_t len)
 {
 	char		*ret_str;
 	size_t		i;
@@ -37,23 +38,23 @@ char	*ch_substr(char const *s, unsigned int start, size_t len)
 
 void	get_text(t_data *data, char *line, int *idx, int id)
 {
-	if (!data || !line)
-		print_err_exit("Unexpected Error\n");
 	char	*loc;
 	int		start;
 
+	if (!data || !line)
+		print_err_exit("Unexpected Error\n");
 	*idx += 2;
 	while (*(line + *idx) && check_whitespace(*(line + *idx)))
 		*idx += 1;
 	if (!(*(line + *idx)))
 	{
 		free(line);
-		config_err();
+		print_err_exit("Config Error\n");
 	}
 	start = *idx;
 	while (*(line + *idx) && !(check_whitespace(*(line + *idx))))
 		*idx += 1;
-	loc = ch_substr(line, start, (unsigned int) start, *idx - start + 1);
+	loc = ch_substr(line, start, *idx - start);
 	if (id == 1)
 		data->north = loc;
 	if (id == 2)
@@ -61,7 +62,7 @@ void	get_text(t_data *data, char *line, int *idx, int id)
 	if (id == 3)
 		data->west = loc;
 	if (id == 4)
-		data->west = loc;
+		data->east = loc;
 }
 
 static void	check_rgb_err(char *line, int *idx)
@@ -96,8 +97,10 @@ void	get_rgb(t_data *data, char *line, int *idx, int id)
 	if (!data || !line)
 		return ;
 	*idx += 1;
-	while (*(line + *idx) && check_whitespace(*(line = *idx)))
+	while (*(line + *idx) && check_whitespace(*(line + *idx)))
 		*idx += 1;
+	if (!(*(line + *idx)))
+		print_err_exit("Rgb Error\n");
 	check_rgb_err(line, idx);
 	if (id == 5)
 		get_f_rgb(data, line, idx);

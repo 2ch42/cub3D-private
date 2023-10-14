@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 16:59:36 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/11 17:00:01 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:55:22 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	check_whitespace(char c)
-{
-	if (c == ' ' || c == '\n' || c == '\t')
-		return (1);
-	else if (c == '\v' || c == '\f' || c == '\r')
-		return (1);
-	return (0);
-}
+#include "parse.h"
 
 static int	check_digit(char c)
 {
@@ -30,27 +23,26 @@ static int	check_digit(char c)
 int	ft_atoi(const char *str)
 {
 	int		i;
+	int		n;
 	int		result;
-	int		signal;
 	char	*s;
 
 	i = 0;
 	result = 0;
-	signal = 1;
 	s = (char *)str;
 	while (check_whitespace(*(s + i)) == 1)
 		i++;
-	if (*(s + i) == '-' || *(s + i) == '+')
-	{
-		if (*(s + i) == '-')
-			signal *= -1;
-		i++;
-	}
+	n = 0;
 	while (check_digit(*(s + i)) == 1)
 	{
 		result *= 10;
 		result += (*(s + i) - 48);
 		i++;
+		n++;
 	}
-	return (result * signal);
+	if (n > 3)
+		print_err_exit("Rgb Input Error\n");
+	if (result > 255)
+		print_err_exit("Rgb Input Error\n");
+	return (result);
 }

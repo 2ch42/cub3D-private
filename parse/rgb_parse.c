@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rgb_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/11 18:19:54 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/13 16:35:46 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:41:41 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "parse.h"
 
-static char	*cub_substr(char const *s, unsigned int start, size_t len)
+static char	*cub_substr(char *s, unsigned int start, size_t len)
 {
 	char		*ret_str;
 	size_t		i;
@@ -41,12 +41,15 @@ void	get_f_rgb(t_data *data, char *line, int *idx)
 {
 	if (!data || !line)
 		return ;
+	line = cub_substr(line, *idx, ch_strlen(line) - *idx - 1);
 	data->floor->red = ft_atoi(line);
+	*idx = 0;
 	while (*(line + *idx) != ',')
 		*idx += 1;
 	*idx += 1;
 	line = cub_substr(line, *idx, ch_strlen(line) - *idx - 1);
 	data->floor->green = ft_atoi(line);
+	*idx = 0;
 	while (*(line + *idx) != ',')
 		*idx += 1;
 	*idx += 1;
@@ -58,12 +61,15 @@ void	get_c_rgb(t_data *data, char *line, int *idx)
 {
 	if (!data || !line)
 		return ;
+	line = cub_substr(line, *idx, ch_strlen(line) - *idx - 1);
 	data->ceiling->red = ft_atoi(line);
+	*idx = 0;
 	while (*(line + *idx) != ',')
 		*idx += 1;
 	*idx += 1;
 	line = cub_substr(line, *idx, ch_strlen(line) - *idx - 1);
 	data->ceiling->green = ft_atoi(line);
+	*idx = 0;
 	while (*(line + *idx) != ',')
 		*idx += 1;
 	*idx += 1;
