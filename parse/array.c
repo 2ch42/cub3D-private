@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 22:48:05 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/14 20:40:35 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/14 22:02:34 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static void	check_map_err(t_data *data)
 	if (!(check_col(data)))
 		map_err_exit(3);
 }
-
+*/
 void	fill_arr(char *s1, char *s2, int width)
 {
 	int	i;
 	int	len;
 
 	i = 0;
-	len = ft_strlen(s1);
+	len = ch_strlen(s1);
 	while (i < len)
 	{
 		s2[i] = s1[i];
@@ -56,7 +56,6 @@ void	make_arr(t_data *data, t_mapline **mapline)
 		p = p->next;
 		i++;
 	}
-	free_mapline(mapline);
-	check_map_err(data);
+	//free_mapline(mapline);
+	//check_map_err(data);
 }
-*/

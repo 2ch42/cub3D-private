@@ -6,13 +6,12 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:05:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/14 21:42:08 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/14 22:13:27 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <fcntl.h>
-#include <stdio.h> //
 #include "get_next_line.h"
 #include "parse.h"
 
@@ -64,12 +63,12 @@ static void	get_s_config(t_data *data, char *line)
 		get_rgb(data, line, &idx, id);
 }
 
-static char	*get_config(t_data *data)
+static void	get_config(t_data *data)
 {
 	char		*line;
 
 	if (!data)
-		return (NULL);
+		print_err_exit("Unknown Error\n");
 	init_checker(data->checker);
 	line = get_next_line(data->fd);
 	while (line)
@@ -85,7 +84,6 @@ static char	*get_config(t_data *data)
 	{
 		print_err_exit("Config Error\n");
 	}
-	return (line);
 }
 
 t_data	*get_data(const char *path)
@@ -99,8 +97,9 @@ t_data	*get_data(const char *path)
 	data->checker = (t_checker *)malloc(sizeof(t_checker));
 	if (!(data->checker))
 		print_err_exit("Unknown Error\n");
-	line = get_config(data);
-	//get_map(data, line);
+	get_config(data);
+	line = get_next_line(data->fd);
+	get_map(data, line);
 	close(data->fd);
 	return (data);
 }

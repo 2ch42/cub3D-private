@@ -6,20 +6,22 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:21:28 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/14 20:44:12 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/14 22:28:33 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h> //
 #include <stdlib.h>
+#include "get_next_line.h"
 #include "parse.h"
-/*
+
 static t_mapline	*new_mapline(char *line)
 {
 	t_mapline	*p;
 
 	p = (t_mapline *)malloc(sizeof(t_mapline));
 	if (!p)
-		return ;
+		return (NULL);
 	p->next = NULL;
 	p->line = line;
 	return (p);
@@ -83,7 +85,7 @@ void	get_map(t_data *data, char *line)
 	}
 	if (!line)
 		map_err_exit(1);
-	mapline = link_map(data, line);
+	mapline = link_map(data, line); //Problem start from Here.
 	if (!mapline)
 		map_err_exit(1);
 	while (line)
@@ -97,4 +99,3 @@ void	get_map(t_data *data, char *line)
 		free(line);
 	mov_to_arr(data, mapline);
 }
-*/

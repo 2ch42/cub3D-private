@@ -10,5 +10,11 @@ int main(int argc, char *argv[])
 	printf("EA : %s\n", data->east);
 	printf("Floor : %d, %d, %d\n", data->floor->red, data->floor->green, data->floor->blue);
 	printf("Ceiling: %d, %d, %d\n", data->ceiling->red, data->ceiling->green, data->ceiling->blue);
+	int i = 0;
+	while ((data->map[i]))
+	{
+		printf("%s\n", data->map[i]);
+		i++;
+	}
 	//map check, but map parse should be changed.
 }
