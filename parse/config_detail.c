@@ -6,12 +6,11 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:12:58 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/14 21:47:09 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/15 21:23:30 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h> //
 #include "parse.h"
 
 char	*ch_substr(char const *s, int start, size_t len)

@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 22:48:05 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/14 22:02:34 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/15 22:32:58 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,37 +21,42 @@ static void	check_map_err(t_data *data)
 		map_err_exit(3);
 }
 */
+
 void	fill_arr(char *s1, char *s2, int width)
 {
 	int	i;
-	int	len;
 
 	i = 0;
-	len = ch_strlen(s1);
-	while (i < len)
+	while (i < ch_strlen(s1) - 1)
 	{
-		s2[i] = s1[i];
+		if (*(s1 + i) == ' ')
+			*(s2 + i) = '0';
+		else
+			*(s2 + i) = *(s1 + i);
 		i++;
 	}
 	while (i < width)
 	{
-		s2[i] = '0';
+		*(s2 + i) = '0';
 		i++;
 	}
 }
 
-void	make_arr(t_data *data, t_mapline **mapline)
+void	make_arr(t_data *data, t_mapline *mapline)
 {
-	t_mapline	*p;
-	int			len;
 	int			i;
+	t_mapline	*p;
 
-	p = *mapline;
+	p = mapline;
 	i = 0;
 	while (i < data->map_h)
 	{
 		if (!p)
 			print_err_exit("Map Error\n");
+		data->map[i] = (char *)malloc(sizeof(char) * (data->map_w + 1));
+		if (!(data->map[i]))
+			print_err_exit("Unknown Error\n");
+		data->map[i][data->map_w] = 0;
 		fill_arr(p->line, data->map[i], data->map_w);
 		p = p->next;
 		i++;

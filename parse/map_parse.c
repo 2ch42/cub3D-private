@@ -6,60 +6,68 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:21:28 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/14 22:28:33 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/15 22:47:24 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> //
 #include <stdlib.h>
+#include <stdio.h>
 #include "get_next_line.h"
 #include "parse.h"
 
 static t_mapline	*new_mapline(char *line)
 {
 	t_mapline	*p;
+	size_t		len;
 
 	p = (t_mapline *)malloc(sizeof(t_mapline));
 	if (!p)
 		return (NULL);
 	p->next = NULL;
+	len = ch_strlen(line);
 	p->line = line;
 	return (p);
 }
 
-static t_mapline	**link_map(t_data *data, char *line)
+static t_mapline	*link_map(t_data *data, char *line)
 {
 	t_mapline	*p;
 	t_mapline	*q;
-	t_mapline	**mapline;
+	t_mapline	*r;
 
 	p = new_mapline(line);
-	mapline = &p;
+	if (!p)
+		return (NULL);
+	r = p;
+	line = get_next_line(data->fd);
 	while (line && check_if_map(line))
 	{
 		q = new_mapline(line);
-		q = p->next;
-		p = p->next;
+		if (!q)
+			break ;
+		r->next = q;
+		r = r->next;
 		line = get_next_line(data->fd);
 	}
-	return (mapline);
+	return (p);
 }
-
-void	mov_to_arr(t_data *data, t_mapline **mapline)
+#include <stdio.h> //
+void	mov_to_arr(t_data *data, t_mapline *mapline)
 {
 	t_mapline	*p;
 
-	p = *mapline;
+	p = mapline;
 	data->map_w = 0;
 	data->map_h = 0;
 	if (!p)
 		return ;
 	while (p)
 	{
+		printf("mapline : %s", p->line); //
 		if (!(p->line))
 			print_err_exit("Unknown Error\n");
-		if (ch_strlen(p->line) > data->map_w)
-			data->map_w = ch_strlen(p->line);
+		if (ch_strlen(p->line) > (data->map_w + 1))
+			data->map_w = ch_strlen(p->line) - 1;
 		data->map_h++;
 		p = p->next;
 	}
@@ -74,7 +82,7 @@ void	mov_to_arr(t_data *data, t_mapline **mapline)
 
 void	get_map(t_data *data, char *line)
 {
-	t_mapline	**mapline;
+	t_mapline	*mapline;
 
 	if (!data || !line)
 		print_err_exit("Unknown Error\n");
@@ -85,17 +93,8 @@ void	get_map(t_data *data, char *line)
 	}
 	if (!line)
 		map_err_exit(1);
-	mapline = link_map(data, line); //Problem start from Here.
+	mapline = link_map(data, line);
 	if (!mapline)
 		map_err_exit(1);
-	while (line)
-	{
-		if (check_if_map(line))
-			map_err_exit(2);
-		free(line);
-		line = get_next_line(data->fd);
-	}
-	if (line)
-		free(line);
 	mov_to_arr(data, mapline);
 }
