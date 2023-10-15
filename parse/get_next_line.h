@@ -20,7 +20,7 @@
 #  define BUFFER_SIZE 42
 # endif
 
-size_t	ch_strlen(const char *s);
+size_t 	ch_strlen(const char *s);
 char	*ft_clear_str(char **str);
 char	*g_strdup(char *s1, size_t len, size_t *tot_len);
 char	*ft_strjoin(char *s1, char *s2, size_t *len1, size_t len2);

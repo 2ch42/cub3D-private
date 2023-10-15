@@ -49,6 +49,7 @@ void	make_arr(t_data *data, t_mapline *mapline)
 
 	p = mapline;
 	i = 0;
+
 	while (i < data->map_h)
 	{
 		if (!p)

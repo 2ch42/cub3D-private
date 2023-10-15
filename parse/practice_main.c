@@ -12,11 +12,13 @@ int main(int argc, char *argv[])
 	printf("Ceiling: %d, %d, %d\n", data->ceiling->red, data->ceiling->green, data->ceiling->blue);
 	int i = 0;
 
+	if (!data->map[i])
+		return (0);;
 	while ((data->map[i]))
 	{
 		printf("%s\n", data->map[i]);
 		i++;
 	}
-
+	return (0);
 	//map check, but map parse should be changed.
 }

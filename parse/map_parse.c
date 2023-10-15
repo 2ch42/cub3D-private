@@ -51,7 +51,7 @@ static t_mapline	*link_map(t_data *data, char *line)
 	}
 	return (p);
 }
-#include <stdio.h> //
+
 void	mov_to_arr(t_data *data, t_mapline *mapline)
 {
 	t_mapline	*p;
@@ -59,19 +59,18 @@ void	mov_to_arr(t_data *data, t_mapline *mapline)
 	p = mapline;
 	data->map_w = 0;
 	data->map_h = 0;
-	if (!p)
-		return ;
 	while (p)
 	{
-		printf("mapline : %s", p->line); //
-		if (!(p->line))
+		if (!(p->line) || !(*(p->line)))
 			print_err_exit("Unknown Error\n");
 		if (ch_strlen(p->line) > (data->map_w + 1))
 			data->map_w = ch_strlen(p->line) - 1;
-		data->map_h++;
+		if (ch_strlen(p->line) > (data->map_w + 1))
+		printf("\n");
+		data->map_h += 1;
 		p = p->next;
 	}
-	if (!data->map_w || !data->map_h)
+	if (data->map_w == 0 || (data->map_h == 0))
 		map_err_exit(2);
 	data->map = (char **)malloc(sizeof(char *) * (data->map_h + 1));
 	if (!(data->map))
