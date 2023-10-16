@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 18:48:10 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 18:29:00 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 21:41:22 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,30 @@ int	check_if_map(const char *s)
 	return (0);
 }
 
-void	free_mapline(t_mapline **mapline)
+void	free_mapline(t_mapline *mapline)
 {
 	t_mapline	*p;
 	t_mapline	*q;
 
-	if (!mapline)
-		return ;
-	p = *mapline;
-	if (!p)
-		return ;
-	while (p != NULL)
+	p = mapline;
+	q = p->next;
+	while (q)
 	{
 		q = p->next;
+		free(p->line);
+		p->line = NULL;
 		free(p);
+		p = NULL;
 		p = q;
+		q = q->next;
 	}
-	free(mapline);
-	mapline = NULL;
+	if (p)
+	{
+		if (p->line)
+		{
+			free(p->line);
+			p->line = NULL;
+		}
+		free(p);
+	}
 }

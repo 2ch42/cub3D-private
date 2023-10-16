@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 16:24:15 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/14 17:58:18 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 20:22:16 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,28 @@ int	check_id(const char *s, int *idx)
 	if (*(s + *idx) == 'C')
 		return (6);
 	return (0);
+}
+
+char	*cub_substr(char *s, unsigned int start, size_t len)
+{
+	char		*ret_str;
+	size_t		i;
+	size_t		real_len;
+
+	i = 0;
+	real_len = 0;
+	while (real_len + start < ch_strlen(s) && real_len < len)
+		real_len++;
+	ret_str = (char *)malloc(sizeof(char) * (real_len + 1));
+	if (!ret_str)
+		return (NULL);
+	while (i < real_len)
+	{
+		*(ret_str + i) = *(s + start + i);
+		i++;
+	}
+	*(ret_str + i) = '\0';
+	free(s);
+	s = NULL;
+	return (ret_str);
 }

@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:25 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 18:19:43 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 20:22:45 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_mapline
 }	t_mapline;
 
 size_t	ch_strlen(const	char *s);
+char	*cub_substr(char *s, unsigned int start, size_t len);
 int		check_whitespace(char c);
 void	print_err_exit(const char *s);
 int		check_arg(int argc, char *argv[]);
@@ -68,6 +69,7 @@ void	get_rgb(t_data *data, char *line, int *idx, int id);
 int		check_if_map(const char *s);
 int		map_strlen(const char *s);
 void	make_arr(t_data *data, t_mapline *mapline);
+void	free_mapline(t_mapline *mapline);
 void	get_map(t_data *data, char *line);
 void	map_err_exit(int errnum);
 t_data	*get_data(const char *path);

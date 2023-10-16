@@ -6,34 +6,12 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:12:58 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/15 21:23:30 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 20:21:53 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "parse.h"
-
-char	*ch_substr(char const *s, int start, size_t len)
-{
-	char		*ret_str;
-	size_t		i;
-	size_t		real_len;
-
-	i = 0;
-	real_len = 0;
-	while (real_len + start < ch_strlen(s) && real_len < len)
-		real_len++;
-	ret_str = (char *)malloc(sizeof(char) * (real_len + 1));
-	if (!ret_str)
-		return (NULL);
-	while (i < real_len)
-	{
-		*(ret_str + i) = *(s + start + i);
-		i++;
-	}
-	*(ret_str + i) = '\0';
-	return (ret_str);
-}
 
 void	get_text(t_data *data, char *line, int *idx, int id)
 {
@@ -53,7 +31,7 @@ void	get_text(t_data *data, char *line, int *idx, int id)
 	start = *idx;
 	while (*(line + *idx) && !(check_whitespace(*(line + *idx))))
 		*idx += 1;
-	loc = ch_substr(line, start, *idx - start);
+	loc = cub_substr(line, start, *idx - start);
 	if (id == 1)
 		data->north = loc;
 	if (id == 2)
