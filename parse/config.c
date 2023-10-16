@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:05:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/15 16:38:15 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 17:44:07 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ static void	get_config(t_data *data)
 	if (!data)
 		print_err_exit("Unknown Error\n");
 	init_checker(data->checker);
+	data->floor = (t_rgb *)malloc(sizeof(t_rgb));
+	data->ceiling = (t_rgb *)malloc(sizeof(t_rgb));
+	if (!data->floor || !data->ceiling)
+		print_err_exit("Unknown Error\n");
 	line = get_next_line(data->fd);
 	while (line)
 	{
@@ -81,9 +85,7 @@ static void	get_config(t_data *data)
 	if (!line)
 		print_err_exit("Config Error\n");
 	if (!(check_checker(data->checker)))
-	{
 		print_err_exit("Config Error\n");
-	}
 }
 
 t_data	*get_data(const char *path)
@@ -91,6 +93,9 @@ t_data	*get_data(const char *path)
 	t_data	*data;
 	char	*line;
 
+	data = (t_data *)malloc(sizeof(t_data));
+	if (!data)
+		print_err_exit("Parse Error\n");
 	data->fd = open(path, O_RDONLY);
 	if (data->fd < 0)
 		print_err_exit("File Open Error\n");
