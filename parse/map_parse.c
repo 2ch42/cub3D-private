@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:21:28 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 22:28:16 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 22:39:14 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	mov_to_arr(t_data *data, t_mapline *mapline)
 	p = mapline;
 	data->map_w = 0;
 	data->map_h = 0;
-
 	while (p)
 	{
 		if (!(p->line) || !(*(p->line)))
