@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:05:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 21:35:36 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 22:36:17 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	get_s_config(t_data *data, char *line)
 	if (id == 5 || id == 6)
 		get_rgb(data, line, &idx, id);
 }
-#include <stdio.h> //
+
 static void	get_config(t_data *data)
 {
 	char		*line;
