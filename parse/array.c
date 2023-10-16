@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 22:48:05 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 18:26:09 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 19:47:57 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	check_map_err(t_data *data)
 		map_err_exit(3);
 }
 */
-
+#include <stdio.h>//
 void	fill_arr(char *s1, char *s2, int width)
 {
 	int	i;
 
 	i = 0;
-	while (i < map_strlen(s1) - 1)
+	while (i < map_strlen(s1))
 	{
 		if (*(s1 + i) == ' ')
 			*(s2 + i) = '0';

@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 18:48:10 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 18:18:58 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:29:00 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	map_strlen(const char *s)
 		{
 			if (i < 1)
 				print_err_exit("Map Error\n");
-			return (i - 1);
+			return (i);
 		}
 		i++;
 	}
