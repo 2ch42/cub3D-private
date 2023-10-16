@@ -6,12 +6,30 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 18:48:10 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/15 21:04:57 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:18:58 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "parse.h"
+
+int	map_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (*(s + i))
+	{
+		if (*(s + i) == '\n')
+		{
+			if (i < 1)
+				print_err_exit("Map Error\n");
+			return (i - 1);
+		}
+		i++;
+	}
+	return (i);
+}
 
 void	map_err_exit(int errnum)
 {
@@ -36,9 +54,7 @@ int	check_if_map(const char *s)
 	space = 0;
 	while (*(s + i))
 	{
-		if (*(s + i) == '1')
-			count++;
-		else if (*(s + i) == '0')
+		if (*(s + i) == '1' || *(s + i) == '0')
 			count++;
 		else if (*(s + i) == 'N' || *(s + i) == 'S'
 			|| *(s + i) == 'W' || *(s + i) == 'E')

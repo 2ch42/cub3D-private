@@ -6,12 +6,11 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:21:28 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/15 22:47:24 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:27:52 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "get_next_line.h"
 #include "parse.h"
 
@@ -59,18 +58,17 @@ void	mov_to_arr(t_data *data, t_mapline *mapline)
 	p = mapline;
 	data->map_w = 0;
 	data->map_h = 0;
+
 	while (p)
 	{
 		if (!(p->line) || !(*(p->line)))
 			print_err_exit("Unknown Error\n");
-		if (ch_strlen(p->line) > (data->map_w + 1))
-			data->map_w = ch_strlen(p->line) - 1;
-		if (ch_strlen(p->line) > (data->map_w + 1))
-		printf("\n");
+		if (map_strlen(p->line) > data->map_w)
+			data->map_w = map_strlen(p->line);
 		data->map_h += 1;
 		p = p->next;
 	}
-	if (data->map_w == 0 || (data->map_h == 0))
+	if (!(data->map_w) || !(data->map_h))
 		map_err_exit(2);
 	data->map = (char **)malloc(sizeof(char *) * (data->map_h + 1));
 	if (!(data->map))

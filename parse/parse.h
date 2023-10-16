@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:25 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/15 22:08:38 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:19:43 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	add_rgb_err(char *line, int *idx);
 void	get_text(t_data *data, char *line, int *idx, int id);
 void	get_rgb(t_data *data, char *line, int *idx, int id);
 int		check_if_map(const char *s);
+int		map_strlen(const char *s);
 void	make_arr(t_data *data, t_mapline *mapline);
 void	get_map(t_data *data, char *line);
 void	map_err_exit(int errnum);
