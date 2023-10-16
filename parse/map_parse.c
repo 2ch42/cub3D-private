@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:21:28 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 21:43:18 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/16 22:28:16 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static t_mapline	*link_map(t_data *data, char *line)
 		r = r->next;
 		line = get_next_line(data->fd);
 	}
+	free(line);
 	return (p);
 }
 
