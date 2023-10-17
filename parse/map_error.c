@@ -69,7 +69,6 @@ int	check_wall(t_data *data)
 {
 	int	wall_f;
 	int	wall_r;
-	int	i;
 
 	if (!(get_wall_fw(data, &wall_f, &wall_r)))
 		return (0);

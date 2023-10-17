@@ -58,16 +58,6 @@ static int	check_r_roop(t_data *data, int *wall_r, int i)
 	return (0);
 }
 
-static void	fill_r_r(t_data *data, int wall_r, int i)
-{
-	wall_r++;
-	while (data->map[i][wall_r])
-	{
-		data->map[i][wall_r] = '0';
-		wall_r++;
-	}
-}
-
 int	check_wall_fw(t_data *data, int *wall_f, int *wall_r)
 {
 	int	i;

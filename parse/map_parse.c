@@ -17,13 +17,11 @@
 static t_mapline	*new_mapline(char *line)
 {
 	t_mapline	*p;
-	size_t		len;
 
 	p = (t_mapline *)malloc(sizeof(t_mapline));
 	if (!p)
 		return (NULL);
 	p->next = NULL;
-	len = ch_strlen(line);
 	p->line = line;
 	return (p);
 }
