@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:25 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 20:22:45 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/17 22:12:11 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define PARSE_H
 
 # include <stdlib.h>
+
+typedef struct s_pos
+{
+	int	x;
+	int	y;
+}	t_pos;
 
 typedef struct s_rgb
 {
@@ -45,6 +51,7 @@ typedef struct s_data
 	t_rgb		*ceiling;
 	int			map_w;
 	int			map_h;
+	t_pos		*pos;
 }	t_data;
 
 typedef struct s_mapline
@@ -72,7 +79,11 @@ void	make_arr(t_data *data, t_mapline *mapline);
 void	free_mapline(t_mapline *mapline);
 void	get_map(t_data *data, char *line);
 void	map_err_exit(int errnum);
+int		check_pos(t_data *data);
+int		check_wall_fw(t_data *data, int *wall_f, int *wall_r);
+int		check_wall(t_data *data);
 t_data	*get_data(const char *path);
 t_data	*run_parse(int argc, char *argv[]);
+void	free_data(t_data *data);
 
 #endif

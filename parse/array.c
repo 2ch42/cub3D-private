@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 22:48:05 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 22:16:29 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/17 22:11:10 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 static void	check_map_err(t_data *data)
 {
-//	if (!(check_surr_char(data)))
-//		map_err_exit(3);
-//	if (!(check_col(data)))
-//		map_err_exit(3);
+	data->pos = (t_pos *)malloc(sizeof(t_pos));
+	if (!(check_pos(data)))
+		map_err_exit(2);
+	if (!(check_wall(data)))
+		map_err_exit(2);
 }
 
 void	fill_arr(char *s1, char *s2, int width)
@@ -48,7 +49,6 @@ void	make_arr(t_data *data, t_mapline *mapline)
 
 	p = mapline;
 	i = 0;
-
 	while (i < data->map_h)
 	{
 		if (!p)

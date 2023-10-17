@@ -1,14 +1,14 @@
-#include <stdio.h>
 #include "parse.h"
-
+#include <stdio.h>
+/*
 void	check_leak(void)
 {
 	system("leaks --list -- a.out");
 }
-
+*/
 int main(int argc, char *argv[])
 {
-	atexit(check_leak);
+	//atexit(check_leak);
 	t_data *data = run_parse(argc, argv);
 	printf("NO : %s\n", data->north);
 	printf("SO : %s\n", data->south);
@@ -25,23 +25,8 @@ int main(int argc, char *argv[])
 		printf("%s\n", data->map[i]);
 		i++;
 	}
-	free(data->checker);
-	free(data->south);
-	free(data->north);
-	free(data->west);
-	free(data->east);
-	free(data->floor);
-	free(data->ceiling);
-	i = 0;
-	
-	while (i < data->map_h)
-	{
-		free(data->map[i]);
-		i++;
-	}
-	
-	free(data->map);
-	free(data);
+
+	free_data(data);
 
 	return (0);
 	//map check, but map parse should be changed.

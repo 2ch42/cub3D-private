@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 18:48:10 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 22:39:25 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:16:35 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	map_err_exit(int errnum)
 	if (errnum == 1)
 		print_err_exit("No Map Found\n");
 	if (errnum == 2)
-		print_err_exit("Map Doesn't Fit\n");
-	if (errnum == 3)
 		print_err_exit("Map Is Invalid\n");
 }
 

@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 21:10:56 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 22:38:24 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:12:27 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,26 @@ void	print_err_exit(const char *s)
 	perror(s);
 	printf("Error\n");
 	exit(1);
+}
+
+void	free_data(t_data *data)
+{
+	int	i;
+
+	free(data->checker);
+	free(data->south);
+	free(data->north);
+	free(data->west);
+	free(data->east);
+	free(data->floor);
+	free(data->ceiling);
+	i = 0;
+	while (i < data->map_h)
+	{
+		free(data->map[i]);
+		i++;
+	}
+	free(data->map);
+	free(data->pos);
+	free(data);
 }
