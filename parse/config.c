@@ -59,8 +59,10 @@ static void	get_s_config(t_data *data, char *line)
 		data->checker->ceiling += 1;
 	if (id >= 1 && id <= 4)
 		get_text(data, line, &idx, id);
-	if (id == 5 || id == 6)
+	else if (id == 5 || id == 6)
 		get_rgb(data, line, &idx, id);
+	else
+		free(line);
 }
 
 static void	get_config(t_data *data)
