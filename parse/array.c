@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 22:48:05 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/17 22:11:10 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:22:20 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	check_map_err(t_data *data)
 	if (!(check_pos(data)))
 		map_err_exit(2);
 	if (!(check_wall(data)))
-		map_err_exit(2); 
+		map_err_exit(2);
 }
 
 void	fill_arr(char *s1, char *s2, int width)
